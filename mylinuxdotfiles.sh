@@ -153,6 +153,11 @@ bind r source-file ~/.tmux.conf \; display "Config reloaded!"
 bind-key -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe-and-cancel "xclip -selection clipboard -i"
 bind-key -T copy-mode-vi y send -X copy-pipe-and-cancel "xclip -selection clipboard -i"
 
+#Bind new panes and windows to current path 
+bind-key c new-window -c "#{pane_current_path}"
+bind-key % split-window -h -c "#{pane_current_path}"
+bind-key '"' split-window -v -c "#{pane_current_path}"
+
 # Navigate between panes with arrow keys
 bind -n M-Left select-pane -L
 bind -n M-Right select-pane -R
@@ -211,6 +216,10 @@ set paste
 set pastetoggle=<F2>
 
 set mouse=a
+
+" Exit to directory with Q
+nnoremap Q :Rexplore<CR>
+
 EOF
 )
 
